@@ -10,25 +10,25 @@ export default function OrderSuccess() {
   <motion.div
    initial={{ opacity: 0, y: 20 }}
    animate={{ opacity: 1, y: 0 }}
-   className="max-w-xl mx-auto mt-24 bg-white shadow-xl border rounded-2xl p-10 text-center"
+   className="max-w-xl mx-auto mt-24 bg-white shadow-2xl shadow-emerald-100 border border-emerald-50 rounded-3xl p-12 text-center"
   >
 
-   <h1 className="text-3xl font-bold text-green-600 mb-4">
-    🎉 Order Placed Successfully
+   <h1 className="text-4xl font-extrabold text-emerald-600 mb-4">
+    🎉 Order Placed!
    </h1>
 
-   <p className="text-gray-600 mb-6">
+   <p className="text-slate-600 mb-8 text-lg font-medium">
     Thank you for shopping with us.
    </p>
 
-   <div className="bg-gray-100 rounded-xl p-4 mb-6">
-    <p className="font-semibold">Order ID</p>
-    <p>{orderId}</p>
+   <div className="bg-emerald-50 text-emerald-800 rounded-xl p-6 mb-8 border border-emerald-100">
+    <p className="font-semibold text-sm uppercase tracking-wider mb-1">Order ID</p>
+    <p className="font-mono text-lg font-bold">{orderId}</p>
    </div>
 
    <button
     onClick={() => navigate("/my-orders")}
-    className="border py-3 rounded-lg w-full hover:bg-gray-100 transition"
+    className="bg-emerald-600 text-white font-medium py-4 rounded-xl w-full hover:bg-emerald-700 shadow-lg shadow-emerald-200 transition duration-300"
    >
     View My Orders
    </button>

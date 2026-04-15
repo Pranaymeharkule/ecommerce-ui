@@ -32,39 +32,39 @@ export default function MyOrders() {
   const statusStyle = (s) => {
     switch (s) {
       case "Processing":
-        return "bg-yellow-50 text-yellow-700 border border-yellow-200";
+        return "bg-amber-50 text-amber-600 border border-amber-200";
       case "Delivered":
-        return "bg-green-50 text-green-700 border border-green-200";
+        return "bg-emerald-50 text-emerald-600 border border-emerald-200";
       case "Cancelled":
-        return "bg-red-50 text-red-700 border border-red-200";
+        return "bg-rose-50 text-rose-600 border border-rose-200";
       case "Shipped":
-        return "bg-blue-50 text-blue-700 border border-blue-200";
+        return "bg-indigo-50 text-indigo-600 border border-indigo-200";
       default:
-        return "bg-neutral-100 text-neutral-700 border border-neutral-200";
+        return "bg-slate-100 text-slate-600 border border-slate-200";
     }
   };
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-[60vh] text-lg text-neutral-500 animate-pulse">
+      <div className="flex justify-center items-center h-[60vh] text-lg text-rose-500 animate-pulse">
         Loading your orders...
       </div>
     );
 
   if (!orders.length)
     return (
-      <div className="text-center py-32 text-neutral-500">
-        <Package className="mx-auto mb-4" size={48} />
-        No orders yet.
+      <div className="text-center py-32 text-slate-400">
+        <Package className="mx-auto mb-4 text-rose-300" size={48} />
+        <p className="text-lg font-medium">No orders yet.</p>
       </div>
     );
 
   return (
-    <div className="bg-gradient-to-b from-[#faf7f4] via-white to-[#f4efe9] min-h-screen py-20">
+    <div className="bg-gradient-to-b from-rose-50 via-white to-pink-50 min-h-screen py-20">
 
       <div className="max-w-6xl mx-auto px-6">
 
-        <h1 className="text-5xl font-semibold mb-16 tracking-tight text-neutral-900">
+        <h1 className="text-5xl font-semibold mb-16 tracking-tight text-slate-900">
           My Orders
         </h1>
 
@@ -87,22 +87,22 @@ export default function MyOrders() {
                 show: { opacity: 1, y: 0 },
               }}
               whileHover={{ y: -4 }}
-              className="bg-white/90 backdrop-blur border border-[#e0d8cf] rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.06)] p-8 transition"
+              className="bg-white/90 backdrop-blur border border-rose-100 rounded-3xl shadow-[0_25px_60px_rgba(225,29,72,0.06)] p-8 transition duration-300"
             >
 
               {/* HEADER */}
               <div className="flex justify-between items-center mb-8">
 
                 <div>
-                  <p className="text-sm text-neutral-400 tracking-wide">
-                    ORDER #{order._id.slice(-6)}
+                  <p className="text-sm font-semibold text-rose-400 tracking-wide uppercase">
+                    Order #{order._id.slice(-6)}
                   </p>
-                  <p className="text-xs text-neutral-400 mt-1">
+                  <p className="text-xs font-medium text-slate-500 mt-1">
                     {new Date(order.createdAt).toLocaleString()}
                   </p>
                 </div>
 
-                <span className={`px-4 py-1 rounded-full text-xs font-semibold ${statusStyle(order.status)}`}>
+                <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${statusStyle(order.status)}`}>
                   {order.status}
                 </span>
 
@@ -115,26 +115,26 @@ export default function MyOrders() {
                   <Link
                     key={item._id}
                     to={`/product/${item.product}`}
-                    className="group flex gap-6 items-center border-b border-[#eee6df] pb-6"
+                    className="group flex gap-6 items-center border-b border-rose-50 pb-6"
                   >
 
-                    <div className="overflow-hidden rounded-2xl border border-[#e0d8cf]">
+                    <div className="overflow-hidden rounded-2xl border border-rose-100">
                       <img
                         src={item.image}
-                        className="w-24 h-24 object-cover group-hover:scale-105 transition"
+                        className="w-24 h-24 object-cover group-hover:scale-105 transition duration-300"
                       />
                     </div>
 
                     <div className="flex-1">
-                      <p className="font-medium text-neutral-900">
+                      <p className="font-semibold text-lg text-slate-900 group-hover:text-rose-600 transition">
                         {item.name}
                       </p>
-                      <p className="text-sm text-neutral-500 mt-1">
-                        Qty {item.quantity}
+                      <p className="text-sm font-medium text-slate-500 mt-1">
+                        Qty: {item.quantity}
                       </p>
                     </div>
 
-                    <p className="font-semibold text-neutral-900">
+                    <p className="font-bold text-lg text-rose-600">
                       ₹{item.price}
                     </p>
 
@@ -147,11 +147,11 @@ export default function MyOrders() {
               <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 mt-10">
 
                 <div>
-                  <p className="text-sm text-neutral-500">
-                    Payment: <span className="font-medium">{order.paymentMethod}</span>
+                  <p className="text-sm text-slate-500">
+                    Payment Method: <span className="font-semibold text-slate-700">{order.paymentMethod}</span>
                   </p>
 
-                  <p className="text-3xl font-semibold mt-2 text-neutral-900">
+                  <p className="text-3xl font-bold mt-2 text-slate-900">
                     ₹{order.totalPrice}
                   </p>
                 </div>
@@ -160,16 +160,16 @@ export default function MyOrders() {
 
                   <Link
                     to={`/order/${order._id}`}
-                    className="flex items-center gap-2 border border-neutral-300 px-6 py-2 rounded-xl hover:bg-neutral-900 hover:text-white transition"
+                    className="flex items-center gap-2 border border-rose-200 text-rose-600 px-6 py-2 rounded-xl font-medium hover:bg-rose-50 transition"
                   >
                     <Eye size={16} />
-                    View
+                    View Details
                   </Link>
 
                   {order.status === "Processing" && (
                     <button
                       onClick={() => cancelOrderHandler(order._id)}
-                      className="flex items-center gap-2 bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600 transition"
+                      className="flex items-center gap-2 bg-rose-500 text-white font-medium px-6 py-2 rounded-xl hover:bg-rose-600 shadow-md shadow-rose-200 transition"
                     >
                       <XCircle size={16} />
                       Cancel

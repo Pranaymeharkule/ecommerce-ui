@@ -56,78 +56,65 @@ export default function Dashboard(){
  };
 
  return(
-<div className="p-6 md:p-10 bg-gray-50 min-h-screen">
+<div className="p-6 md:p-10 bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen">
 
 {/* HEADER */}
-<div className="flex justify-between mb-10">
-<h1 className="text-3xl font-bold">Admin Dashboard</h1>
-<span className="border px-4 py-2 rounded-lg font-semibold">
-{new Date().toDateString()}
-</span>
+<div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+  <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Admin Dashboard</h1>
+  <span className="bg-white border border-rose-100 text-rose-600 px-5 py-2.5 rounded-xl font-semibold shadow-sm">
+    {new Date().toDateString()}
+  </span>
 </div>
 
 {/* KPI GRID */}
 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-
-<KPI title="Products" value={stats.products}/>
-<KPI title="Orders" value={stats.orders}/>
-<KPI title="Revenue" value={`₹${stats.revenue}`}/>
-<KPI title="Today Revenue" value={`₹${stats.todayRevenue}`}/>
-
+  <KPI title="Total Products" value={stats.products}/>
+  <KPI title="Total Orders" value={stats.orders}/>
+  <KPI title="Total Revenue" value={`₹${stats.revenue}`}/>
+  <KPI title="Today's Revenue" value={`₹${stats.todayRevenue}`}/>
 </div>
 
 {/* MINI STATS */}
 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-
-<Mini title="Today Orders" value={stats.todayOrders}/>
-<Mini title="Pending Orders" value={stats.pending}/>
-<Mini title="Low Stock" value={stats.lowStock}/>
-<Mini title="Active Customers" value={stats.orders}/>
-
+  <Mini title="Today's Orders" value={stats.todayOrders}/>
+  <Mini title="Pending Orders" value={stats.pending}/>
+  <Mini title="Low Stock Items" value={stats.lowStock}/>
+  <Mini title="Active Customers" value={stats.orders}/>
 </div>
 
 <div className="grid lg:grid-cols-3 gap-10">
 
 {/* RECENT ORDERS */}
-<div className="lg:col-span-2 bg-white rounded-2xl shadow p-6">
+<div className="lg:col-span-2 bg-white/90 backdrop-blur rounded-3xl shadow-[0_20px_40px_rgba(225,29,72,0.04)] border border-rose-100 p-8">
 
-<h2 className="text-xl font-semibold mb-6">Recent Orders</h2>
+  <h2 className="text-xl font-bold mb-6 text-slate-900">Recent Orders</h2>
 
-<table className="w-full text-sm">
-
-<thead className="border-b text-gray-500">
-<tr>
-<th className="py-3 text-left">Order</th>
-<th>Date</th>
-<th>Total</th>
-<th>Status</th>
-</tr>
-</thead>
-
-<tbody>
-
-{recent.map(o=>(
-<tr key={o._id} className="border-b last:border-0">
-
-<td className="py-3 font-medium">
-#{o._id.slice(-6)}
-</td>
-
-<td>{new Date(o.createdAt).toLocaleDateString()}</td>
-
-<td className="font-semibold">₹{o.totalPrice}</td>
-
-<td>
-<span className={`px-3 py-1 rounded-full text-xs ${badge(o.status)}`}>
-{o.status}
-</span>
-</td>
-
-</tr>
-))}
-
-</tbody>
-</table>
+  <div className="overflow-x-auto">
+    <table className="w-full text-sm">
+      <thead className="border-b border-rose-100 text-slate-500">
+        <tr>
+          <th className="py-4 text-left font-medium">Order ID</th>
+          <th className="py-4 text-left font-medium">Date</th>
+          <th className="py-4 text-left font-medium">Total</th>
+          <th className="py-4 text-left font-medium">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {recent.map(o=>(
+          <tr key={o._id} className="border-b border-rose-50 last:border-0 hover:bg-rose-50/50 transition">
+            <td className="py-4 font-semibold text-slate-800">#{o._id.slice(-6)}</td>
+            <td className="py-4 text-slate-600">{new Date(o.createdAt).toLocaleDateString()}</td>
+            <td className="py-4 font-bold text-rose-600">₹{o.totalPrice}</td>
+            <td className="py-4">
+              <span className={`px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase ${badge(o.status)}`}>
+                {o.status}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
@@ -135,33 +122,25 @@ export default function Dashboard(){
 <div className="space-y-6">
 
 {/* ADMIN SHORTCUTS */}
-<div className="bg-white rounded-2xl shadow p-6">
-
-<h3 className="font-semibold mb-4">Admin Shortcuts</h3>
-
-<div className="grid grid-cols-2 gap-4">
-
-<Action label="➕ Add Product" color="from-indigo-500 to-indigo-700" onClick={()=>nav("/admin/create-product")}/>
-<Action label="📦 Orders" color="from-emerald-500 to-emerald-700" onClick={()=>nav("/admin/orders")}/>
-<Action label="🛒 Products" color="from-blue-500 to-blue-700" onClick={()=>nav("/admin/products")}/>
-<Action label="📊 Dashboard" color="from-orange-500 to-orange-700" onClick={()=>nav("/admin")}/>
-
-</div>
-
+<div className="bg-white/90 backdrop-blur rounded-3xl shadow-[0_20px_40px_rgba(225,29,72,0.04)] border border-rose-100 p-8">
+  <h3 className="font-bold mb-6 text-slate-900 text-lg">Quick Actions</h3>
+  <div className="grid grid-cols-2 gap-4">
+    <Action label="➕ Add Product" onClick={()=>nav("/admin/create-product")}/>
+    <Action label="📦 Orders" onClick={()=>nav("/admin/orders")}/>
+    <Action label="🛒 Products" onClick={()=>nav("/admin/products")}/>
+    <Action label="📊 Dashboard" onClick={()=>nav("/admin")}/>
+  </div>
 </div>
 
 {/* SYSTEM */}
-<div className="bg-white rounded-2xl shadow p-6">
-
-<h3 className="font-semibold mb-4">System Health</h3>
-
-<ul className="space-y-2 text-sm text-gray-600">
-<li>✅ API Connected</li>
-<li>✅ Orders Active</li>
-<li>✅ WhatsApp Enabled</li>
-<li>✅ Manual Payments</li>
-</ul>
-
+<div className="bg-slate-900 rounded-3xl shadow-xl p-8 text-white">
+  <h3 className="font-bold mb-6 text-lg tracking-wide text-rose-50">System Health</h3>
+  <ul className="space-y-4 text-sm text-slate-300 font-medium">
+    <li className="flex items-center gap-3"><span className="text-emerald-400 text-lg">●</span> API Connected</li>
+    <li className="flex items-center gap-3"><span className="text-emerald-400 text-lg">●</span> Orders Active</li>
+    <li className="flex items-center gap-3"><span className="text-emerald-400 text-lg">●</span> WhatsApp Enabled</li>
+    <li className="flex items-center gap-3"><span className="text-emerald-400 text-lg">●</span> Payments Live</li>
+  </ul>
 </div>
 
 </div>
@@ -175,30 +154,30 @@ export default function Dashboard(){
 /* COMPONENTS */
 
 const KPI = ({title,value})=>(
-<div className="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
-<p className="text-sm text-gray-500">{title}</p>
-<p className="text-3xl font-bold mt-3">{value}</p>
-</div>
+  <div className="bg-white/90 backdrop-blur p-8 rounded-3xl border border-rose-100 shadow-[0_20px_40px_rgba(225,29,72,0.04)] hover:shadow-rose-100 transition duration-300">
+    <p className="text-sm font-medium text-slate-500 tracking-wide uppercase">{title}</p>
+    <p className="text-4xl font-extrabold mt-3 text-slate-900">{value}</p>
+  </div>
 );
 
 const Mini = ({title,value})=>(
-<div className="bg-gray-100 p-4 rounded-xl">
-<p className="text-xs text-gray-500">{title}</p>
-<p className="text-xl font-bold">{value}</p>
-</div>
+  <div className="bg-rose-50/80 border border-rose-100 p-5 rounded-2xl">
+    <p className="text-xs font-semibold text-rose-600 tracking-wide uppercase">{title}</p>
+    <p className="text-2xl font-bold text-slate-800 mt-1">{value}</p>
+  </div>
 );
 
-const Action = ({label,color,onClick})=>(
-<div
- onClick={onClick}
- className={`bg-gradient-to-br ${color} text-white rounded-xl p-4 text-center font-semibold cursor-pointer shadow hover:scale-105 transition`}>
-{label}
-</div>
+const Action = ({label,onClick})=>(
+  <div
+   onClick={onClick}
+   className="bg-slate-50 border border-slate-200 text-slate-700 rounded-2xl p-4 text-center text-sm font-semibold cursor-pointer hover:bg-rose-600 hover:text-white hover:border-rose-600 hover:shadow-lg hover:shadow-rose-200 transition duration-300">
+   {label}
+  </div>
 );
 
 const badge = s =>{
- if(s==="Delivered") return "bg-green-100 text-green-700";
- if(s==="Cancelled") return "bg-red-100 text-red-700";
- if(s==="Shipped") return "bg-blue-100 text-blue-700";
- return "bg-yellow-100 text-yellow-700";
+ if(s==="Delivered") return "bg-emerald-50 text-emerald-700 border border-emerald-200";
+ if(s==="Cancelled") return "bg-rose-50 text-rose-700 border border-rose-200";
+ if(s==="Shipped") return "bg-indigo-50 text-indigo-700 border border-indigo-200";
+ return "bg-amber-50 text-amber-700 border border-amber-200";
 };

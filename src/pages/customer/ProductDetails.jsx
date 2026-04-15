@@ -41,7 +41,7 @@ setMainImage(data.data.images[0]); };
   };
 
   if (!product)
-    return <p className="text-center mt-20">Loading...</p>;
+    return <p className="text-center mt-20 text-rose-500 font-medium animate-pulse">Loading...</p>;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-16">
@@ -52,7 +52,7 @@ setMainImage(data.data.images[0]); };
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         whileHover={{ rotateX: 4, rotateY: -4, scale: 1.02 }}
-        className="relative bg-white rounded-3xl p-6 shadow-xl border perspective"
+        className="relative bg-white rounded-3xl p-6 shadow-2xl shadow-rose-100 border border-rose-50 perspective"
       >
      <img
  src={mainImage}
@@ -65,14 +65,14 @@ setMainImage(data.data.images[0]); };
    key={i}
    src={img}
    onClick={()=>setMainImage(img)}
-   className={`w-20 h-20 object-cover rounded cursor-pointer border
-   ${mainImage===img?"border-black":"border-gray-300"}`}
+   className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 transition duration-200
+   ${mainImage===img?"border-rose-500 shadow-md":"border-transparent hover:border-rose-200"}`}
   />
  ))}
 </div>
 
         {/* Glow Border */}
-        <div className="absolute inset-0 rounded-3xl ring-1 ring-black/10 pointer-events-none" />
+        <div className="absolute inset-0 rounded-3xl ring-1 ring-rose-200/50 pointer-events-none" />
       </motion.div>
 
       {/* DETAILS */}
@@ -83,41 +83,41 @@ setMainImage(data.data.images[0]); };
         className="flex flex-col justify-center space-y-6"
       >
 
-        <h1 className="text-4xl font-bold leading-tight">
+        <h1 className="text-4xl font-extrabold leading-tight text-slate-900">
           {product.name}
         </h1>
 
-        <p className="text-gray-600 leading-relaxed max-w-md">
+        <p className="text-slate-600 text-lg leading-relaxed max-w-md">
           {product.description}
         </p>
 
         <motion.p
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
-          className="text-4xl font-extrabold"
+          className="text-4xl font-extrabold text-rose-600"
         >
           ₹{product.price}
         </motion.p>
 
         {/* Quantity */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 py-4">
 
-          <span className="font-medium">Quantity</span>
+          <span className="font-semibold text-slate-700">Quantity</span>
 
-          <div className="flex items-center border rounded-xl overflow-hidden">
+          <div className="flex items-center border border-rose-200 rounded-xl overflow-hidden shadow-sm">
 
             <button
               onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
-              className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
+              className="px-5 py-3 bg-rose-50 text-rose-600 font-bold hover:bg-rose-100 transition"
             >
               -
             </button>
 
-            <span className="px-6 font-semibold">{qty}</span>
+            <span className="px-6 font-bold text-slate-800">{qty}</span>
 
             <button
               onClick={() => setQty(qty + 1)}
-              className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
+              className="px-5 py-3 bg-rose-50 text-rose-600 font-bold hover:bg-rose-100 transition"
             >
               +
             </button>
@@ -131,18 +131,18 @@ setMainImage(data.data.images[0]); };
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={addToCartHandler}
-            className="flex items-center justify-center gap-2 border w-full py-4 rounded-xl hover:bg-black hover:text-white transition"
+            className="flex items-center justify-center gap-2 border-2 border-rose-600 text-rose-600 font-bold w-full py-4 rounded-xl hover:bg-rose-50 transition"
           >
-            <ShoppingCart size={18} />
+            <ShoppingCart size={20} />
             Add To Cart
           </motion.button>
 
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={buyNowHandler}
-            className="flex items-center justify-center gap-2 bg-black text-white w-full py-4 rounded-xl hover:bg-gray-800 transition"
+            className="flex items-center justify-center gap-2 bg-rose-600 text-white font-bold w-full py-4 rounded-xl hover:bg-rose-700 shadow-lg shadow-rose-200 transition"
           >
-            <CreditCard size={18} />
+            <CreditCard size={20} />
             Buy Now
           </motion.button>
 
@@ -153,11 +153,11 @@ setMainImage(data.data.images[0]); };
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="flex gap-6 text-sm text-gray-500 pt-4"
+          className="flex gap-6 text-sm font-medium text-slate-500 pt-6 border-t border-rose-100"
         >
-          <span>🚚 Fast Delivery</span>
-          <span>🔒 Secure Payment</span>
-          <span>↩ Easy Returns</span>
+          <span className="flex items-center gap-1"><span className="text-rose-400">🚚</span> Fast Delivery</span>
+          <span className="flex items-center gap-1"><span className="text-rose-400">🔒</span> Secure Payment</span>
+          <span className="flex items-center gap-1"><span className="text-rose-400">↩</span> Easy Returns</span>
         </motion.div>
 
       </motion.div>

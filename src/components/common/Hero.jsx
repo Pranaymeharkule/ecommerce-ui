@@ -5,11 +5,11 @@ export default function Hero() {
   const nav = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#faf7f4] via-white to-[#f4efe9] py-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-rose-50 via-white to-pink-50 py-28 border-b border-rose-100">
 
       {/* BACKGROUND GLOW */}
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-black/5 rounded-full blur-[180px]" />
-      <div className="absolute top-40 right-0 w-[500px] h-[500px] bg-black/5 rounded-full blur-[200px]" />
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-rose-200/40 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-40 right-0 w-[500px] h-[500px] bg-pink-200/30 rounded-full blur-[200px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
 
@@ -24,10 +24,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-5xl md:text-6xl font-semibold leading-tight tracking-tight text-neutral-900"
+            className="text-5xl md:text-6xl font-bold leading-tight tracking-tight text-slate-900"
           >
             Elevate Your{" "}
-            <span className="bg-gradient-to-r from-neutral-900 to-neutral-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
               Wardrobe
             </span>
           </motion.h1>
@@ -36,7 +36,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-8 text-neutral-600 max-w-lg text-lg leading-relaxed"
+            className="mt-8 text-slate-600 max-w-lg text-lg leading-relaxed font-medium"
           >
             Discover premium kurtis, statement party wear and curated fashion
             collections crafted for timeless elegance.
@@ -46,14 +46,14 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="mt-12 flex gap-6"
+            className="mt-12 flex flex-wrap gap-4"
           >
 
             <motion.button
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => nav("/")}
-              className="bg-neutral-900 text-white px-10 py-4 rounded-full shadow-xl hover:bg-black transition"
+              className="bg-rose-600 text-white font-medium px-10 py-4 rounded-full shadow-xl shadow-rose-200 hover:bg-rose-700 hover:shadow-2xl transition"
             >
               Shop Collection
             </motion.button>
@@ -62,7 +62,7 @@ export default function Hero() {
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => nav("/about")}
-              className="border border-neutral-900 px-10 py-4 rounded-full hover:bg-neutral-900 hover:text-white transition"
+              className="bg-white border-2 border-rose-100 text-rose-600 font-medium px-10 py-4 rounded-full hover:border-rose-300 hover:bg-rose-50 transition"
             >
               Our Story
             </motion.button>
@@ -78,7 +78,7 @@ export default function Hero() {
           className="relative"
         >
 
-          <div className="relative rounded-[40px] overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.15)] border border-[#e6ded6]">
+          <div className="relative rounded-[40px] overflow-hidden shadow-[0_30px_70px_rgba(225,29,72,0.15)] border-4 border-white">
 
             <motion.img
               whileHover={{ scale: 1.05 }}
@@ -89,15 +89,8 @@ export default function Hero() {
             />
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent pointer-events-none" />
           </div>
-
-          {/* FLOATING BADGE */}
-          <motion.div
-          
-          >
-           
-          </motion.div>
 
         </motion.div>
 

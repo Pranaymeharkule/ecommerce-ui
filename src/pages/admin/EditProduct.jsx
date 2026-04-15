@@ -23,8 +23,7 @@ export default function EditProduct(){
  useEffect(()=>{
   api.get(`/products/${id}`).then(res=>{
    setForm(res.data.data);
-  });
- },[id]);
+  }); },[id]);
 
  const uploadImage = async(e)=>{
   const fd=new FormData();
@@ -40,41 +39,41 @@ export default function EditProduct(){
  };
 
  return(
-<div className="min-h-screen bg-gray-50 px-4 sm:px-6 md:px-10 py-6 pb-24">
+<div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 px-4 sm:px-6 md:px-10 py-10 pb-24">
 
-<h1 className="text-2xl md:text-3xl font-bold mb-6">Edit Product</h1>
+<h1 className="text-2xl md:text-3xl font-bold mb-8 text-slate-900 tracking-tight">Edit Product</h1>
 
-<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
 {/* LEFT FORM */}
 
-<div className="lg:col-span-2 space-y-6">
+<div className="lg:col-span-2 space-y-8">
 
-<Card title="Basic Info">
+<Card title="Basic Information">
 
 <Input label="Product Name" value={form.name}
  onChange={v=>setForm({...form,name:v})}/>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-<Input label="Price" value={form.price}
+<Input label="Retail Price (₹)" value={form.price}
  onChange={v=>setForm({...form,price:v})}/>
 
-<Input label="Stock" value={form.stock}
+<Input label="Available Stock" value={form.stock}
  onChange={v=>setForm({...form,stock:v})}/>
 
 </div>
 
-<Textarea label="Description" value={form.description}
+<Textarea label="Product Description" value={form.description}
  onChange={v=>setForm({...form,description:v})}/>
 
 </Card>
 
-<Card title="Category">
+<Card title="Categorization">
 
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-<Select label="Category" value={form.category}
+<Select label="Main Category" value={form.category}
  options={categories}
  onChange={v=>setForm({...form,category:v})}/>
 
@@ -90,22 +89,22 @@ export default function EditProduct(){
 
 {/* IMAGE PANEL */}
 
-<div className="bg-white rounded-2xl shadow p-4 sm:p-6">
+<div className="bg-white/90 backdrop-blur rounded-3xl shadow-[0_20px_40px_rgba(225,29,72,0.04)] border border-rose-100 p-6 sm:p-8 h-fit">
 
-<h3 className="font-semibold mb-3">Product Image</h3>
+<h3 className="font-bold mb-4 text-slate-900">Product Image</h3>
 
-<label className="block border-2 border-dashed rounded-xl p-4 sm:p-6 text-center cursor-pointer hover:border-black transition">
+<label className="block border-2 border-dashed border-rose-200 bg-rose-50/30 rounded-2xl p-6 sm:p-10 text-center cursor-pointer hover:border-rose-400 hover:bg-rose-50 transition duration-300">
 
 <input type="file" className="hidden" onChange={uploadImage}/>
 
-<p className="text-sm text-gray-500">
-Tap or click to upload
+<p className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+Tap or click to upload new image
 </p>
 
 {form.images[0] && (
 <img
  src={form.images[0]}
- className="mx-auto mt-4 w-40 sm:w-48 aspect-square object-cover rounded-xl shadow hover:scale-105 transition"
+ className="mx-auto mt-6 w-full max-w-[200px] aspect-square object-cover rounded-xl shadow-md hover:scale-105 transition duration-300 border border-rose-100"
 />
 )}
 
@@ -117,18 +116,18 @@ Tap or click to upload
 
 {/* MOBILE SAVE BAR */}
 
-<div className="fixed bottom-0 left-0 right-0 bg-white border-t px-4 py-3 flex gap-3 justify-end">
+<div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur border-t border-rose-100 px-6 py-4 flex gap-4 justify-end shadow-[0_-10px_20px_rgba(0,0,0,0.02)] z-50">
 
 <button
  onClick={()=>nav("/admin/products")}
- className="border rounded px-4 sm:px-6 py-2">
+ className="border-2 border-rose-100 text-slate-700 font-semibold rounded-xl px-6 sm:px-8 py-3 hover:bg-rose-50 transition">
 Cancel
 </button>
 
 <button
  onClick={submit}
- className="bg-black text-white rounded px-6 sm:px-8 py-2 hover:bg-gray-800">
-Save
+ className="bg-rose-600 text-white font-bold rounded-xl px-8 sm:px-10 py-3 hover:bg-rose-700 shadow-lg shadow-rose-200 transition">
+Save Changes
 </button>
 
 </div>
@@ -140,44 +139,44 @@ Save
 /* COMPONENTS */
 
 const Card = ({title,children})=>(
-<div className="bg-white rounded-2xl shadow p-4 sm:p-6 space-y-4">
-<h3 className="font-semibold text-sm sm:text-base">{title}</h3>
+<div className="bg-white/90 backdrop-blur rounded-3xl shadow-[0_20px_40px_rgba(225,29,72,0.04)] border border-rose-100 p-6 sm:p-8 space-y-6">
+<h3 className="font-bold text-lg text-slate-900 border-b border-rose-50 pb-4">{title}</h3>
 {children}
 </div>
 );
 
 const Input = ({label,value,onChange})=>(
 <div>
-<label className="text-xs sm:text-sm text-gray-500">{label}</label>
+<label className="text-sm font-medium text-slate-700">{label}</label>
 <input
  value={value||""}
  onChange={e=>onChange(e.target.value)}
- className="border rounded w-full p-2 mt-1 focus:ring"
+ className="border border-rose-200 rounded-xl w-full p-3 mt-2 focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition text-slate-800 bg-slate-50/50"
 />
 </div>
 );
 
 const Textarea = ({label,value,onChange})=>(
 <div>
-<label className="text-xs sm:text-sm text-gray-500">{label}</label>
+<label className="text-sm font-medium text-slate-700">{label}</label>
 <textarea
  rows="4"
  value={value||""}
  onChange={e=>onChange(e.target.value)}
- className="border rounded w-full p-2 mt-1 focus:ring"
+ className="border border-rose-200 rounded-xl w-full p-3 mt-2 focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition text-slate-800 bg-slate-50/50 resize-none"
 />
 </div>
 );
 
 const Select = ({label,value,onChange,options})=>(
 <div>
-<label className="text-xs sm:text-sm text-gray-500">{label}</label>
+<label className="text-sm font-medium text-slate-700">{label}</label>
 <select
  value={value||""}
  onChange={e=>onChange(e.target.value)}
- className="border rounded w-full p-2 mt-1">
+ className="border border-rose-200 rounded-xl w-full p-3 mt-2 focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition text-slate-800 bg-slate-50/50 cursor-pointer">
 
-<option value="">Select</option>
+<option value="">Select Category</option>
 {options.map(o=><option key={o}>{o}</option>)}
 
 </select>

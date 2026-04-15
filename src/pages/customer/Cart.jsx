@@ -41,7 +41,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#faf7f4] via-white to-[#f4efe9] min-h-screen py-16">
+    <div className="bg-gradient-to-b from-rose-50 via-white to-pink-50 min-h-screen py-16">
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -52,7 +52,7 @@ export default function Cart() {
         {/* ITEMS */}
         <div className="md:col-span-2 space-y-6">
 
-          <h2 className="text-4xl font-semibold text-neutral-900 mb-6">
+          <h2 className="text-4xl font-semibold text-slate-900 mb-6">
             Shopping Cart
           </h2>
 
@@ -63,20 +63,20 @@ export default function Cart() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="bg-white/90 backdrop-blur border border-[#e0d8cf] rounded-2xl p-6 flex gap-6 hover:shadow-xl transition"
+                className="bg-white/90 backdrop-blur border border-rose-100 rounded-2xl p-6 flex gap-6 shadow-sm hover:shadow-xl hover:shadow-rose-50 transition duration-300"
               >
                 <img
                   src={item.image}
-                  className="w-32 h-32 rounded-xl object-cover border"
+                  className="w-32 h-32 rounded-xl object-cover border border-rose-50"
                 />
 
                 <div className="flex-1">
 
-                  <h3 className="font-medium text-lg text-neutral-900">
+                  <h3 className="font-medium text-lg text-slate-900">
                     {item.name}
                   </h3>
 
-                  <p className="text-neutral-500 mt-1">
+                  <p className="text-rose-600 font-medium mt-1">
                     ₹{item.price}
                   </p>
 
@@ -86,7 +86,7 @@ export default function Cart() {
                       −
                     </QtyBtn>
 
-                    <span className="font-semibold">{item.quantity}</span>
+                    <span className="font-semibold text-slate-800">{item.quantity}</span>
 
                     <QtyBtn onClick={() => updateQty(item.productId, item.quantity + 1)}>
                       +
@@ -94,15 +94,15 @@ export default function Cart() {
 
                   </div>
 
-                  <p className="text-sm text-neutral-500 mt-2">
-                    Subtotal: ₹{item.price * item.quantity}
+                  <p className="text-sm text-slate-500 mt-2">
+                    Subtotal: <span className="font-medium text-slate-700">₹{item.price * item.quantity}</span>
                   </p>
 
                 </div>
 
                 <button
                   onClick={() => removeItem(item.productId)}
-                  className="text-neutral-400 hover:text-red-500 transition"
+                  className="text-slate-400 hover:text-rose-600 transition duration-200"
                 >
                   <FiTrash2 size={18} />
                 </button>
@@ -112,7 +112,7 @@ export default function Cart() {
           </AnimatePresence>
 
           {cart.length === 0 && (
-            <p className="text-neutral-500">Your cart is empty.</p>
+            <p className="text-slate-500 font-medium text-lg">Your cart is empty.</p>
           )}
 
         </div>
@@ -122,23 +122,23 @@ export default function Cart() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/90 backdrop-blur border border-[#e0d8cf] rounded-2xl p-8 h-fit sticky top-28 shadow-xl"
+            className="bg-white/90 backdrop-blur border border-rose-200 rounded-2xl p-8 h-fit sticky top-28 shadow-xl shadow-rose-50"
           >
 
-            <h3 className="text-2xl font-semibold mb-6 text-neutral-900">
+            <h3 className="text-2xl font-semibold mb-6 text-slate-900">
               Order Summary
             </h3>
 
             <Row label="Subtotal" value={`₹${subtotal}`} />
             <Row label="Tax (5%)" value={`₹${tax}`} />
 
-            <div className="border-t border-[#e0d8cf] pt-4 mt-4">
+            <div className="border-t border-rose-100 pt-4 mt-4">
               <Row label="Total" value={`₹${grandTotal}`} bold />
             </div>
 
             <button
               onClick={() => navigate("/checkout")}
-              className="mt-8 bg-neutral-900 text-white w-full py-3 rounded-xl hover:bg-black hover:shadow-xl transition"
+              className="mt-8 bg-rose-600 text-white w-full py-3 rounded-xl font-medium hover:bg-rose-700 shadow-lg shadow-rose-200 hover:shadow-rose-300 transition duration-300"
             >
               Checkout Securely
             </button>
@@ -156,7 +156,7 @@ export default function Cart() {
 const QtyBtn = ({ children, onClick }) => (
   <button
     onClick={onClick}
-    className="w-9 h-9 border border-[#d9d1c8] rounded-full hover:bg-neutral-100 transition"
+    className="w-9 h-9 border border-rose-200 text-slate-700 rounded-full hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 transition"
   >
     {children}
   </button>
@@ -164,7 +164,7 @@ const QtyBtn = ({ children, onClick }) => (
 
 const Row = ({ label, value, bold }) => (
   <div className={`flex justify-between mb-3 ${bold && "font-semibold text-lg"}`}>
-    <span className="text-neutral-600">{label}</span>
-    <span className="text-neutral-900">{value}</span>
+    <span className="text-slate-600">{label}</span>
+    <span className={bold ? "text-rose-600" : "text-slate-900"}>{value}</span>
   </div>
 );

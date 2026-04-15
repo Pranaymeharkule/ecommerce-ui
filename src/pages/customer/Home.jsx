@@ -45,7 +45,7 @@ export default function Home() {
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   return (
-    <div className="bg-gradient-to-b from-[#faf7f4] via-white to-[#f4efe9]">
+    <div className="bg-gradient-to-b from-rose-50 via-white to-pink-50">
 
       <Hero />
 
@@ -57,11 +57,11 @@ export default function Home() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-8 py-4 rounded-full border text-lg transition
+              className={`px-8 py-4 rounded-full border text-lg font-medium transition duration-300
                 ${
                   selectedCategory === cat
-                    ? "bg-black text-white"
-                    : "bg-white hover:bg-black hover:text-white"
+                    ? "bg-rose-600 text-white border-rose-600 shadow-md shadow-rose-200"
+                    : "bg-white text-slate-600 border-rose-200 hover:border-rose-600 hover:text-rose-600"
                 }`}
             >
               {cat}
@@ -69,7 +69,7 @@ export default function Home() {
           ))}
         </div>
 
-        <h2 className="text-5xl font-semibold mb-14 text-center">
+        <h2 className="text-5xl font-semibold mb-14 text-center text-slate-900">
           Latest Collection
         </h2>
 
@@ -87,19 +87,19 @@ export default function Home() {
             <button
               disabled={page === 1}
               onClick={() => setPage(p => p - 1)}
-              className="px-6 py-2 border rounded-full disabled:opacity-40"
+              className="px-6 py-2 border border-rose-200 text-rose-600 font-medium rounded-full disabled:opacity-40 hover:bg-rose-50 transition"
             >
               Prev
             </button>
 
-            <span className="px-4 py-2">
+            <span className="px-4 py-2 font-medium text-slate-600">
               {page} / {totalPages}
             </span>
 
             <button
               disabled={page === totalPages}
               onClick={() => setPage(p => p + 1)}
-              className="px-6 py-2 border rounded-full disabled:opacity-40"
+              className="px-6 py-2 border border-rose-200 text-rose-600 font-medium rounded-full disabled:opacity-40 hover:bg-rose-50 transition"
             >
               Next
             </button>

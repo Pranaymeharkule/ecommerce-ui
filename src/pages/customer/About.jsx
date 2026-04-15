@@ -2,19 +2,19 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <div className="bg-gradient-to-b from-[#faf7f4] via-white to-[#f4efe9] overflow-hidden">
+    <div className="bg-gradient-to-b from-rose-50 via-white to-pink-50 overflow-hidden">
 
       {/* HERO */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="py-24 text-center border-b border-neutral-200"
+        className="py-24 text-center border-b border-rose-100"
       >
-        <h1 className="text-5xl font-bold mb-4 tracking-tight text-neutral-900">
+        <h1 className="text-5xl font-bold mb-4 tracking-tight text-slate-900">
           About Fashion Store
         </h1>
-        <p className="text-neutral-600 max-w-2xl mx-auto">
+        <p className="text-slate-600 max-w-2xl mx-auto">
           Premium kurtis, party wear & trending fashion — crafted for confidence,
           comfort and timeless elegance.
         </p>
@@ -43,14 +43,14 @@ export default function About() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="bg-white py-24 border-y border-neutral-200"
+        className="bg-white py-24 border-y border-rose-100"
       >
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-semibold mb-6 text-neutral-900">
+          <h2 className="text-4xl font-semibold mb-6 text-slate-900">
             Our Story
           </h2>
 
-          <p className="text-neutral-600 leading-relaxed">
+          <p className="text-slate-600 leading-relaxed">
             Fashion Store began with a simple vision — bringing premium Indian
             fashion to every wardrobe. From everyday cotton kurtis to elegant
             party wear, each piece is designed to blend tradition with
@@ -82,10 +82,10 @@ const Feature = ({ title, children }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
-    className="bg-white/90 backdrop-blur border border-[#d6cfc7] shadow-[0_20px_40px_rgba(0,0,0,0.06)] rounded-3xl p-10 text-center hover:border-black transition"
+    className="bg-white/90 backdrop-blur border border-rose-200 shadow-[0_20px_40px_rgba(225,29,72,0.06)] rounded-3xl p-10 text-center hover:border-rose-400 hover:shadow-rose-100 transition duration-300"
   >
-    <h3 className="font-semibold text-xl mb-4 text-neutral-900">{title}</h3>
-    <p className="text-neutral-600 text-sm">{children}</p>
+    <h3 className="font-semibold text-xl mb-4 text-slate-900">{title}</h3>
+    <p className="text-slate-600 text-sm">{children}</p>
   </motion.div>
 );
 
@@ -95,9 +95,9 @@ const Stat = ({ value, label }) => (
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.4 }}
     viewport={{ once: true }}
-    className="bg-white border border-[#e0d8cf] shadow-xl rounded-2xl p-8 text-center hover:shadow-2xl transition"
+    className="bg-white border border-rose-100 shadow-xl shadow-rose-50 rounded-2xl p-8 text-center hover:shadow-2xl hover:shadow-rose-100 transition duration-300"
   >
-    <p className="text-4xl font-bold text-neutral-900">{value}</p>
-    <p className="text-neutral-500 text-sm mt-2">{label}</p>
+    <p className="text-4xl font-bold text-rose-600">{value}</p>
+    <p className="text-slate-500 text-sm mt-2 font-medium">{label}</p>
   </motion.div>
 );

@@ -56,27 +56,27 @@ export default function CreateProduct() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto pb-24">
+    <div className="max-w-4xl mx-auto pb-24 pt-6 px-4">
       {/* SIMPLE HEADER */}
       <div className="flex items-center justify-between mb-12">
         <button 
           onClick={() => nav("/admin/products")}
-          className="p-3 bg-white border border-slate-100 rounded-full hover:bg-slate-50 transition-all text-slate-400 hover:text-slate-900"
+          className="p-3 bg-white border border-rose-100 rounded-full hover:bg-rose-50 transition-all text-slate-400 hover:text-rose-600 shadow-sm"
         >
           <FiArrowLeft size={20} />
         </button>
         <div className="text-center">
-          <h1 className="text-3xl font-serif font-bold tracking-tight text-slate-900">Add New Kurti</h1>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-amber-500 font-black mt-1">Boutique Entry</p>
+          <h1 className="text-3xl font-serif font-bold tracking-tight text-slate-900">Add New Product</h1>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-rose-500 font-black mt-1">Boutique Entry</p>
         </div>
         <div className="w-11" /> {/* Spacer for symmetry */}
       </div>
 
       <div className="space-y-8">
         {/* IMAGE UPLOAD AREA */}
-        <section className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+        <section className="bg-white/90 backdrop-blur rounded-[2.5rem] p-8 border border-rose-100 shadow-[0_20px_40px_rgba(225,29,72,0.04)]">
           <div className="flex items-center gap-2 mb-6">
-            <FiUpload className="text-amber-500" />
+            <FiUpload className="text-rose-500" />
             <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">Visual Gallery</h3>
           </div>
           
@@ -87,24 +87,24 @@ export default function CreateProduct() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   key={i} 
-                  className="relative min-w-[150px] h-[200px] rounded-2xl overflow-hidden shadow-md group"
+                  className="relative min-w-[150px] h-[200px] rounded-2xl overflow-hidden shadow-md group border border-rose-50"
                 >
                   <img src={img} className="w-full h-full object-cover" />
                   <button 
                     onClick={() => removeImage(i)}
-                    className="absolute inset-0 bg-red-500/80 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                    className="absolute inset-0 bg-rose-600/80 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm"
                   >
-                    <FiTrash2 size={20} />
+                    <FiTrash2 size={24} />
                   </button>
                 </motion.div>
               ))}
             </AnimatePresence>
 
             {form.images.length < 4 && (
-              <label className="min-w-[150px] h-[200px] border-2 border-dashed border-slate-100 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-amber-400 hover:bg-amber-50/30 transition-all group">
+              <label className="min-w-[150px] h-[200px] border-2 border-dashed border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-rose-400 hover:bg-rose-50/50 transition-all group">
                 <input hidden type="file" multiple onChange={uploadImage} />
-                <div className="p-3 bg-slate-50 rounded-full group-hover:scale-110 transition-transform">
-                  <FiPlus className="text-slate-400 group-hover:text-amber-500" />
+                <div className="p-3 bg-rose-50 rounded-full group-hover:scale-110 transition-transform">
+                  <FiPlus className="text-rose-400 group-hover:text-rose-600" />
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 mt-2 uppercase">Add Image</span>
               </label>
@@ -113,9 +113,9 @@ export default function CreateProduct() {
         </section>
 
         {/* BASIC INFO */}
-        <section className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm space-y-8">
+        <section className="bg-white/90 backdrop-blur rounded-[2.5rem] p-8 border border-rose-100 shadow-[0_20px_40px_rgba(225,29,72,0.04)] space-y-8">
           <div className="flex items-center gap-2 mb-2">
-            <FiInfo className="text-amber-500" />
+            <FiInfo className="text-rose-500" />
             <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">Product Essentials</h3>
           </div>
 
@@ -123,7 +123,7 @@ export default function CreateProduct() {
             <div className="relative">
               <input 
                 placeholder="Product Name"
-                className="w-full text-xl font-serif font-bold border-b border-slate-100 py-4 focus:border-amber-400 outline-none transition-all placeholder:text-slate-200"
+                className="w-full text-xl font-serif font-bold border-b border-rose-100 py-4 focus:border-rose-400 outline-none transition-all placeholder:text-slate-300 bg-transparent text-slate-900"
                 value={form.name}
                 onChange={e => setForm({...form, name: e.target.value})}
               />
@@ -132,7 +132,7 @@ export default function CreateProduct() {
             <textarea 
               placeholder="Tell the story of this design..."
               rows="3"
-              className="w-full text-sm font-medium border-b border-slate-100 py-4 focus:border-amber-400 outline-none transition-all placeholder:text-slate-200 resize-none"
+              className="w-full text-sm font-medium border-b border-rose-100 py-4 focus:border-rose-400 outline-none transition-all placeholder:text-slate-300 resize-none bg-transparent text-slate-700"
               value={form.description}
               onChange={e => setForm({...form, description: e.target.value})}
             />
@@ -141,12 +141,12 @@ export default function CreateProduct() {
           <div className="grid grid-cols-2 gap-10">
             <div className="space-y-1">
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Retail Price</label>
-              <div className="flex items-center gap-2 border-b border-slate-100 focus-within:border-amber-400 transition-all">
+              <div className="flex items-center gap-2 border-b border-rose-100 focus-within:border-rose-400 transition-all">
                 <span className="font-bold text-slate-400">₹</span>
                 <input 
                   type="number"
                   placeholder="0.00"
-                  className="w-full py-3 text-lg font-bold outline-none bg-transparent"
+                  className="w-full py-3 text-lg font-bold outline-none bg-transparent text-slate-900"
                   value={form.price}
                   onChange={e => setForm({...form, price: e.target.value})}
                 />
@@ -154,12 +154,12 @@ export default function CreateProduct() {
             </div>
             <div className="space-y-1">
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Stock Units</label>
-              <div className="flex items-center gap-2 border-b border-slate-100 focus-within:border-amber-400 transition-all">
+              <div className="flex items-center gap-2 border-b border-rose-100 focus-within:border-rose-400 transition-all">
                 <FiShoppingBag className="text-slate-400" />
                 <input 
                   type="number"
                   placeholder="0"
-                  className="w-full py-3 text-lg font-bold outline-none bg-transparent"
+                  className="w-full py-3 text-lg font-bold outline-none bg-transparent text-slate-900"
                   value={form.stock}
                   onChange={e => setForm({...form, stock: e.target.value})}
                 />
@@ -169,9 +169,9 @@ export default function CreateProduct() {
         </section>
 
         {/* CATEGORIZATION */}
-        <section className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+        <section className="bg-white/90 backdrop-blur rounded-[2.5rem] p-8 border border-rose-100 shadow-[0_20px_40px_rgba(225,29,72,0.04)]">
           <div className="flex items-center gap-2 mb-8">
-            <FiLayers className="text-amber-500" />
+            <FiLayers className="text-rose-500" />
             <h3 className="text-xs font-black uppercase tracking-widest text-slate-800">Categorization</h3>
           </div>
 
@@ -181,7 +181,7 @@ export default function CreateProduct() {
               <select 
                 value={form.category}
                 onChange={e => setForm({...form, category: e.target.value})}
-                className="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 text-sm font-bold focus:ring-2 focus:ring-amber-400 transition-all appearance-none cursor-pointer"
+                className="w-full bg-rose-50/50 border border-rose-100 rounded-2xl px-5 py-4 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-rose-300 transition-all appearance-none cursor-pointer outline-none"
               >
                 {categories.map(c => <option key={c}>{c}</option>)}
               </select>
@@ -191,7 +191,7 @@ export default function CreateProduct() {
               <select 
                 value={form.subCategory}
                 onChange={e => setForm({...form, subCategory: e.target.value})}
-                className="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 text-sm font-bold focus:ring-2 focus:ring-amber-400 transition-all appearance-none cursor-pointer"
+                className="w-full bg-rose-50/50 border border-rose-100 rounded-2xl px-5 py-4 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-rose-300 transition-all appearance-none cursor-pointer outline-none"
               >
                 {sub.map(s => <option key={s}>{s}</option>)}
               </select>
@@ -205,7 +205,7 @@ export default function CreateProduct() {
           whileTap={{ scale: 0.99 }}
           onClick={submit}
           disabled={loading}
-          className="w-full bg-[#0f172a] text-amber-400 py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-slate-800 transition-all disabled:opacity-50"
+          className="w-full bg-rose-600 text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm shadow-xl shadow-rose-200 hover:bg-rose-700 hover:shadow-2xl hover:shadow-rose-300 transition-all disabled:opacity-50"
         >
           {loading ? "Adding to Collection..." : "Publish to Boutique"}
         </motion.button>
