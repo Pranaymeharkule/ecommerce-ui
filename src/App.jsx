@@ -25,19 +25,26 @@ import CustomerGuard from "./guards/CustomerGuard";
 import AdminRoutes from "./routes/AdminRoutes";
 
 export default function App() {
-
   const { loading } = useContext(AuthContext);
 
-  if (loading) return null; // prevent flicker
+  if (loading) return null;
 
   return (
     <Routes>
 
-      {/* AUTH */}
+      {/* 🌍 PUBLIC ROUTES */}
+      <Route element={<CustomerLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+
+      {/* 🔐 AUTH */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* CUSTOMER */}
+      {/* 🔒 PROTECTED */}
       <Route
         element={
           <CustomerGuard>
@@ -45,18 +52,14 @@ export default function App() {
           </CustomerGuard>
         }
       >
-        <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/my-orders" element={<MyOrders />} />
         <Route path="/order/:id" element={<OrderDetails />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/order-success/:orderId" element={<OrderSuccess />} />
       </Route>
 
-      {/* ADMIN */}
+      {/* 🛠 ADMIN */}
       <Route path="/admin/*" element={<AdminRoutes />} />
 
     </Routes>

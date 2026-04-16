@@ -4,11 +4,15 @@ import ProductCard from "../../components/customer/ProductCard";
 import Hero from "../../components/common/Hero";
 import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import Login from "../auth/Login";
 
 const categories = ["All", "Cotton", "Party Wear", "Special", "Kurties", "Bags"];
 const ITEMS_PER_PAGE = 8;
 
 export default function Home() {
+  const { user, loading: authLoading } = useAuth(); // ✅ added
+
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loading, setLoading] = useState(false);
@@ -44,15 +48,19 @@ export default function Home() {
   const paginated = products.slice(start, start + ITEMS_PER_PAGE);
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
+  if (authLoading) return null;
+
   return (
     <div className="bg-gradient-to-b from-rose-50 via-white to-pink-50">
 
       <Hero />
 
+      
+
       <div className="max-w-[1500px] mx-auto px-6 lg:px-20 py-20">
 
         {/* CATEGORY */}
-        <div className="flex flex-wrap justify-center gap-5 mb-16  ">
+        <div className="flex flex-wrap justify-center gap-5 mb-16">
           {categories.map(cat => (
             <button
               key={cat}
@@ -75,7 +83,7 @@ export default function Home() {
 
         {/* GRID */}
         <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-12">
-          {paginated.map((product, i) => (
+          {paginated.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </motion.div>
